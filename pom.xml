@@ -14,6 +14,7 @@
     <name>web-AI</name>
     <description>web-AI</description>
     <url/>
+
     <licenses>
         <license/>
     </licenses>
@@ -75,6 +76,8 @@
                             <artifactId>lombok</artifactId>
                         </path>
                     </annotationProcessorPaths>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
             <plugin>

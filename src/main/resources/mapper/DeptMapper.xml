@@ -6,22 +6,20 @@
     <select id="findAll" resultType="com.itheima.pojo.Dept" >
         select * from dept order by update_time desc
     </select>
-<!--    <select id="deleteById" resultType="Integer" >-->
-<!--        delete from user where id = #{id}-->
-<!--    </select>-->
-<!--    <select id="insert" >-->
-<!--        insert into user (username,password,name,age)-->
-<!--        values (#{username},#{password},#{name},#{age})-->
-<!--    </select>-->
-<!--    <select id="update" >-->
-<!--        update user set-->
-<!--        username=#{username},-->
-<!--        password=#{password},-->
-<!--        name=#{name},-->
-<!--        age=#{age}-->
-<!--        where id = #{id}-->
-<!--    </select>-->
-<!--    <select id="findUserByUsernameAndPassword" resultType="com.itheima.pojo.User" >-->
-<!--        select * from user where username=#{username} and password=#{password}-->
-<!--    </select>-->
+    <select id="deleteById" resultType="Integer" >
+        delete from dept where id = #{id}
+    </select>
+    <select id="insert" >
+        insert into dept (name,create_time,update_time)
+        values (#{deptName},now(),now())
+    </select>
+    <select id="update" >
+        update dept set
+        name=#{name},
+        update_time=#{updateTime}
+        where id=#{id}
+    </select>
+    <select id="findById" resultType="com.itheima.pojo.Dept" >
+        select * from dept where id = #{id}
+    </select>
 </mapper>
