@@ -8,6 +8,16 @@
     </select>
     <select id="list" resultType="com.itheima.pojo.Emp" >
         select e.*,d.name deptName from emp e left join dept d on d.id = e.dept_id
-        order by e.update_time desc limit #{start},#{pageSize};
+        <where>
+            <if test="name!= null and name!=''">
+                e.name like concat('%',#{name},'%')
+            </if>
+            <if test="gender!=null">
+                and e.gender=#{gender}
+            </if>
+            <if test="begin!=null and end!=null">
+                and entry_date between #{begin} and #{end}
+            </if>
+        </where>  order by e.update_time desc
     </select>
 </mapper>

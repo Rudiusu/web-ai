@@ -1,13 +1,18 @@
 package com.itheima.controller;
 
 import com.itheima.pojo.Emp;
+import com.itheima.pojo.EmpQueryParam;
 import com.itheima.pojo.PageResult;
 import com.itheima.pojo.Result;
 import com.itheima.service.impl.EmpServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
 
 @Slf4j
 @RequestMapping("/emps")
@@ -20,9 +25,10 @@ public class EmpController {
     }
 
     @GetMapping
-   public Result page(Integer page, Integer pageSize) {
-         log.info("第{}页，分页大小{}", page, pageSize);
-         PageResult<Emp> pageResult = empServiceImpl.page( page,  pageSize);
+   public Result page(EmpQueryParam empQueryParam) {
+//         log.info("第{}页，分页大小{},姓名：{},性别：{}，入职日期：{}~{}", page, pageSize,name,gender,begin,end);
+
+         PageResult<Emp> pageResult = empServiceImpl.page(empQueryParam);
          return Result.success(pageResult);
    }
 }

@@ -1,8 +1,10 @@
 package com.itheima.mapper;
 
 import com.itheima.pojo.Emp;
+import com.itheima.pojo.EmpQueryParam;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -19,5 +21,5 @@ public interface EmpMapper {
     /**
      * 分页查询员工数据
      */
-    public List<Emp> list(Integer start,Integer pageSize);
+    public List<Emp> list(EmpQueryParam empQueryParam);
 }
