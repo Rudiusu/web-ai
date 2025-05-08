@@ -2,11 +2,19 @@ package com.itheima.mapper;
 
 import com.itheima.pojo.Dept;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 
 import java.util.List;
 
+/**
+ * 部门信息查询
+ */
 @Mapper
 public interface DeptMapper {
+//   @Results({
+//           @Result(column = "",property = "")
+//   })
    //获取部门列表
    public List<Dept> findAll();
 

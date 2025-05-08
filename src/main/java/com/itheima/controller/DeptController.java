@@ -20,14 +20,7 @@ public class DeptController {
     @GetMapping
     public Result list(){
         List<Dept> deptList = deptService.findAll();
-        return Result.success(deptList.stream().map(dept -> {
-            return new Dept(
-                    dept.getId(),
-                    dept.getName(),
-                    dept.getCreateTime(),
-                    dept.getUpdateTime()
-            );
-        }));
+        return Result.success(deptList);
     }
 
 
