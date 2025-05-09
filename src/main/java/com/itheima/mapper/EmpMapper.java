@@ -3,6 +3,7 @@ package com.itheima.mapper;
 import com.itheima.pojo.Emp;
 import com.itheima.pojo.EmpQueryParam;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,4 +23,10 @@ public interface EmpMapper {
      * 分页查询员工数据
      */
     public List<Emp> list(EmpQueryParam empQueryParam);
+
+    /**
+     * 添加员工
+     * @param emp 员工表单信息
+     */
+    public void insert(Emp emp);
 }
