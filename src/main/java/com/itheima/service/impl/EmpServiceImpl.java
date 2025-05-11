@@ -20,7 +20,7 @@ public class EmpServiceImpl implements EmpService  {
     private final EmpExpMapper empExpMapper;
     private final EmpLogService empLogService;
     @Autowired
-        public  EmpServiceImpl(EmpMapper empMapper, EmpExpMapper empExpMapper,EmpLogService empLogService) {
+    public  EmpServiceImpl(EmpMapper empMapper, EmpExpMapper empExpMapper,EmpLogService empLogService) {
         this.empMapper = empMapper;
         this.empExpMapper = empExpMapper;
         this.empLogService = empLogService;

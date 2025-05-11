@@ -22,5 +22,11 @@ public class LogTest {
         log.info("计算结果为:{} ",sum);
         log.info("{} 结束计算: ...", LocalDateTime.now());
     }
+   @Test
+    public void splitTest(){
+        String file = "fsdasdf.jpg";
+        String  fileType = file.split("\\.")[1];
 
+        log.info("文件格式：{}",fileType);
+    }
 }
