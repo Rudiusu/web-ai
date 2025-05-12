@@ -34,6 +34,13 @@ public class Result {
         result.msg = msg;
         return result;
     }
+    public static Result success(String msg,Object object) {
+        Result result = new Result();
+        result.data = object;
+        result.code = 1;
+        result.msg = msg;
+        return result;
+    }
     public static Result error(String msg) {
         Result result = new Result();
         result.msg = msg;
