@@ -4,6 +4,8 @@ import com.aliyun.oss.*;
 import com.aliyun.oss.common.auth.CredentialsProviderFactory;
 import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;
 import com.aliyun.oss.common.comm.SignVersion;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
@@ -12,11 +14,22 @@ import java.util.UUID;
 
 @Component
 public class AliyunOSSOperator {
+//    @Value("${aliyun.oss.endpoint}")
+//    String endpoint ;
+//    @Value("${aliyun.oss.region}")
+//    String region;
+//    @Value("${aliyun.oss.bucketName}")
+//    String bucketName;
+    private final AliyunOSSProperties aliyunOSSProperties ;
+    @Autowired
+    public AliyunOSSOperator(AliyunOSSProperties aliyunOSSProperties){
+        this.aliyunOSSProperties = aliyunOSSProperties;
+    }
 
     public  String upload(byte[] content, String originalFilename) throws Exception {
-        String endpoint = "https://oss-cn-hangzhou.aliyuncs.com";
-        String region = "cn-hangzhou";
-        String bucketName = "rudi-java-ai";
+        String endpoint = aliyunOSSProperties.getEndpoint();
+        String region = aliyunOSSProperties.getRegion();
+        String bucketName = aliyunOSSProperties.getBucketName();
         // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
         EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();
 

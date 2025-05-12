@@ -29,4 +29,9 @@ public interface EmpMapper {
      * @param emp 员工表单信息
      */
     public void insert(Emp emp);
+
+    /**
+     * 删除员工
+     */
+    public void delete(List<Integer> ids);
 }

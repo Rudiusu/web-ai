@@ -55,7 +55,13 @@ public class EmpServiceImpl implements EmpService  {
         finally {
             empLogService.insertLog(new EmpLog(null,LocalDateTime.now(),"新增员工："+emp.toString()));
         }
+    }
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(List<Integer> ids) {
+        //批量删除员工
+        empMapper.delete(ids);
 
-
+        //批量删除员工经历
+        empExpMapper.deleteByEmpId(ids);
     }
 }

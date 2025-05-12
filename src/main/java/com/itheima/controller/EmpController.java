@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/emps")
@@ -33,6 +34,16 @@ public class EmpController {
    public Result save(@RequestBody Emp emp){
         log.info("员工信息：{}",emp);
         empServiceImpl.save(emp);
+        return Result.success();
+   }
+
+   @DeleteMapping
+    public Result delete(@RequestParam List<Integer> ids){
+        log.info("删除员工，id：{}",ids);
+        if(ids.isEmpty()){
+            return Result.error("删除失败，请选择要删除的员工");
+        }
+        empServiceImpl.delete(ids);
         return Result.success();
    }
 }

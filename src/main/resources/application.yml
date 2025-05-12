@@ -12,12 +12,21 @@ spring:
       max-file-size: 10MB
       #最大请求数据大小
       max-request-size: 100MB
+#MyBatis相关配置
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
 
+# 事务管理日志级别
 logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+#阿里云配置
+aliyun:
+   oss:
+    endpoint: https://oss-cn-hangzhou.aliyuncs.com
+    region: cn-hangzhou
+    bucketName: rudi-java-ai

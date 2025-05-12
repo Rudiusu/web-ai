@@ -24,4 +24,10 @@
         insert into emp (username, name, gender, phone, job, salary, image, entry_date, dept_id, create_time, update_time)
         value (#{username},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{entryDate},#{deptId},#{createTime},#{updateTime})
     </insert>
+    <delete id="delete" >
+        delete from emp where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            (#{id})
+        </foreach>
+    </delete>
 </mapper>
