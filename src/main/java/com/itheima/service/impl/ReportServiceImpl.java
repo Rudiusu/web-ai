@@ -20,9 +20,14 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public JobOption getEmpJobData(){
         List<Map<String, Object>> list = empMapper.countEmpJobData();
-        System.out.println(list);
         List<Object> pos = list.stream().map(map -> map.get("pos")).toList();
         List<Object> num = list.stream().map(map -> map.get("num")).toList();
         return new JobOption(pos,num);
     }
+
+    @Override
+    public List<Map<String, Object>> getEmpGenderData() {
+        return empMapper.countEmpGenderData();
+    }
+
 }

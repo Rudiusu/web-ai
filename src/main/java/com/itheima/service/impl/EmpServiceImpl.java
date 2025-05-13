@@ -88,4 +88,8 @@ public class EmpServiceImpl implements EmpService  {
             empExpMapper.insertBatch(expList);
         }
     }
+
+    public List<Emp> getMasterEmp(){
+        return empMapper.empMaster();
+    }
 }

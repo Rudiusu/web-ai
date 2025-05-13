@@ -56,4 +56,9 @@ public class EmpController {
         empService.update(emp);
         return Result.success();
    }
+
+   @GetMapping("/list")
+   public Result list(){
+        return Result.success(empService.getMasterEmp());
+   }
 }

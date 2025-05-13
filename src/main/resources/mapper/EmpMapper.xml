@@ -55,7 +55,7 @@
         ee.job ee_job
         from emp left join emp_expr ee on emp.id = ee.emp_id where emp.id = #{id};
     </select>
-    <select id="countEmpJobData">
+    <select id="countEmpJobData" resultType="java.util.Map">
         select
         case job
         when 1 then '班主任'
@@ -67,6 +67,15 @@
         end as pos,
         count(*) num
         from emp group by job order by num;
+    </select>
+    <select id="countEmpGenderData" resultType="java.util.Map">
+        select
+        if(gender = 1,'男性员工','女性员工') name,
+        count(*) value
+        from emp group by gender;
+    </select>
+    <select id="empMaster" resultType="com.itheima.pojo.Emp">
+        select * from emp where job = 1
     </select>
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into emp (username, name, gender, phone, job, salary, image, entry_date, dept_id, create_time, update_time)
@@ -83,6 +92,7 @@
             <set>
                 <if test="username != null">username = #{username},</if>
                 <if test="name != null">name = #{name},</if>
+                <if test="password != null">password = #{password},</if>
                 <if test="gender != null">gender = #{gender},</if>
                 <if test="phone != null">phone = #{phone},</if>
                 <if test="job != null">job = #{job},</if>

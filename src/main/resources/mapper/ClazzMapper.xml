@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.ClazzMapper">
+    <select id="list" resultType="com.itheima.pojo.Clazz">
+        select
+        clazz.*,
+        emp.name masterName,
+        if(end_date&lt;now(),'已结课','在读中') status
+        from clazz left join emp on clazz.master_id = emp.id
+        <where>
+            <if test="name != null and name != ''">
+                clazz.name like concat('%',#{name},'%')
+            </if>
+
+            <if test="end != null and begin != null">
+               and end_date between #{begin} and #{end}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+</mapper>

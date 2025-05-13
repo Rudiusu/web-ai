@@ -13,4 +13,5 @@ public interface EmpService {
     public Emp getInfo(Integer id);
     public void delete(List<Integer> ids);
     public void update(Emp emp);
+    public List<Emp> getMasterEmp();
 }

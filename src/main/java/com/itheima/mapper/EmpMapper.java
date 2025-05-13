@@ -54,4 +54,12 @@ public interface EmpMapper {
      */
     @MapKey("pos")
     public List<Map<String,Object>> countEmpJobData();
+    /**
+     * 获取员工性别数据
+     * @return 性别数据
+     */
+    @MapKey("name")
+    public List<Map<String, Object>> countEmpGenderData();
+
+    public List<Emp> empMaster();
 }
