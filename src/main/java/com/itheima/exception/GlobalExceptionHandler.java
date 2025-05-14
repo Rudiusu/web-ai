@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
 
         log.error("服务器异常:{}", e.getMessage());
 
-        return Result.error("服务器异常");
+        return Result.error(e.getMessage());
     }
 
     @ExceptionHandler

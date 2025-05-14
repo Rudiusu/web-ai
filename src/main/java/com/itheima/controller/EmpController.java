@@ -36,7 +36,7 @@ public class EmpController {
    }
 
    @DeleteMapping
-    public Result delete(@RequestParam List<Integer> ids){
+   public Result delete(@RequestParam List<Integer> ids){
         log.info("删除员工，id：{}",ids);
         if(ids.isEmpty()){
             return Result.error("删除失败，请选择要删除的员工");

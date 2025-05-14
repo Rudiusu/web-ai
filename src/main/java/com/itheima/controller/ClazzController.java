@@ -6,10 +6,7 @@ import com.itheima.pojo.PageResult;
 import com.itheima.pojo.Result;
 import com.itheima.service.ClazzService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,37 @@ public class ClazzController {
     public Result page(ClazzQueryParam clazzQueryParam){
           log.info("查询参数：{}",clazzQueryParam);
           return Result.success(clazzService.page(clazzQueryParam));
+    }
+    @GetMapping("/list")
+    public Result list(){
+        return Result.success(clazzService.listAll());
+    }
+    @GetMapping("/{id}")
+    public Result getClassById(@PathVariable(value = "id") Integer clazzId){
+        log.info("班级id：{}",clazzId);
+        return Result.success(clazzService.getClazzById(clazzId));
+    }
+    @PostMapping
+    public Result insert(@RequestBody Clazz clazz){
+        log.info("添加班级：{}",clazz);
+        clazzService.insert(clazz);
+        return Result.success();
+    }
+    @PutMapping
+    public Result update(@RequestBody Clazz clazz){
+        log.info("修改班级：{}",clazz);
+        clazzService.update(clazz);
+        return Result.success();
+    }
+    @DeleteMapping("/{id}")
+    public Result delete( @PathVariable(value = "id") Integer clazzId) throws Exception  {
+        log.info("要删除的班级id：{}",clazzId);
+        try{
+            clazzService.deleteById(clazzId);
+        }catch (Exception e){
+            return Result.error("该班级下有学生，不能删除");
+        }
+
+        return Result.success();
     }
 }
