@@ -84,7 +84,7 @@
     <delete id="delete" >
         delete from emp where id in
         <foreach collection="ids" item="id" separator="," open="(" close=")">
-            (#{id})
+            #{id}
         </foreach>
     </delete>
         <update id="update" parameterType="map">

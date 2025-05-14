@@ -12,4 +12,6 @@ public interface StudentService {
     public void insert(Student student);
     public Student getStudentById(Integer id);
     public void update(Student student);
+    public void delete(List<Integer> ids);
+    public void violate(Integer id, Integer score);
 }

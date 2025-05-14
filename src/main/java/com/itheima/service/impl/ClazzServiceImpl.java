@@ -58,8 +58,8 @@ public class ClazzServiceImpl implements ClazzService {
     @Override
     public void deleteById(Integer clazzId) throws Exception {
         Integer count = studentMapper.getCountStudentOfClazz(clazzId);
-        if(count!=null){
-            throw new Exception();
+        if(count>0){
+            throw new Exception("该班级下有学生，不能删除");
         }else{
             clazzMapper.deleteById(clazzId);
         }

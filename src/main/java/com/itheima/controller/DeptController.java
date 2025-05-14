@@ -26,7 +26,12 @@ public class DeptController {
 
     @DeleteMapping
     public Result deleteDept(@RequestParam(value = "id") Integer deptId){
-        deptService.deleteById(deptId);
+        try{
+            deptService.deleteById(deptId);
+        }catch (Exception e){
+            return Result.error(e.getMessage());
+        }
+
         System.out.println(deptId);
         return Result.success("删除成功");
 

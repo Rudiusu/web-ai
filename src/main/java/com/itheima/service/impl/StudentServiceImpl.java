@@ -46,6 +46,7 @@ public class StudentServiceImpl implements StudentService {
      * 添加学生
      * @param student 学生表单数据
      */
+    @Override
     public void insert(Student student){
         student.setCreateTime(LocalDateTime.now());
         student.setUpdateTime(LocalDateTime.now());
@@ -57,6 +58,7 @@ public class StudentServiceImpl implements StudentService {
      * @param id 学生id
      * @return 学生信息
      */
+    @Override
     public Student getStudentById(Integer id){
       return studentMapper.getStudentById(id);
     }
@@ -65,7 +67,31 @@ public class StudentServiceImpl implements StudentService {
      * 编辑修改学生
      * @param student 学生表单数据
      */
+    @Override
     public void update(Student student){
+        student.setUpdateTime(LocalDateTime.now());
         studentMapper.update(student);
     }
+
+    /**
+     * 批量删除学生
+     * @param ids 学生id
+     */
+    @Override
+    public void delete(List<Integer> ids){
+        studentMapper.delete(ids);
+    };
+
+    /**
+     * 学生违纪扣分
+     * @param id 学生id
+     * @param score 扣分值
+     */
+    @Override
+    public void violate(Integer id, Integer score){
+        Student student = studentMapper.getStudentById(id);
+        student.setViolationCount((short) (student.getViolationCount()+1));
+        student.setViolationScore((short) (student.getViolationScore()+score));
+        studentMapper.update(student);
+    };
 }

@@ -22,4 +22,8 @@
     <select id="findById" resultType="com.itheima.pojo.Dept" >
         select * from dept where id = #{id}
     </select>
+    <select id="getCountEmpOfDept" resultType="java.lang.Integer">
+        select count(e.id) from dept d left outer join emp e on e.dept_id = d.id where d.id=#{id} group by d.name
+    </select>
+
 </mapper>

@@ -28,4 +28,6 @@ public interface DeptMapper {
    public Dept findById(Integer id);
 
    public void update(Dept dept);
+
+   Integer getCountEmpOfDept(Integer id);
 }

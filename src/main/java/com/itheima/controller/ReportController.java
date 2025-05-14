@@ -17,6 +17,7 @@ import java.util.Map;
 @RestController
 public class ReportController {
     private final ReportService  reportService;
+
     @Autowired
     public ReportController(ReportService reportService) {
         this.reportService = reportService;
@@ -31,5 +32,14 @@ public class ReportController {
     public Result getEmpGenderData() {
         List<Map<String, Object>> genderOption = reportService.getEmpGenderData();
         return Result.success(genderOption);
+    }
+
+    @GetMapping("/studentDegreeData")
+    public Result getStudentDegreeData() {
+        return Result.success(reportService.getStudentDegreeData());
+    }
+    @GetMapping("/studentCountData")
+    public Result getStudentCountData() {
+        return Result.success(reportService.getClassStudentData());
     }
 }

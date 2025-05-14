@@ -50,7 +50,7 @@ public class ClazzController {
         try{
             clazzService.deleteById(clazzId);
         }catch (Exception e){
-            return Result.error("该班级下有学生，不能删除");
+            return Result.error(e.getMessage());
         }
 
         return Result.success();

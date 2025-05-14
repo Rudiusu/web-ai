@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/students")
@@ -36,6 +38,22 @@ public class StudentController {
      @PutMapping
      public Result update(@RequestBody Student student){
          log.info("修改学生：{}",student);
+         studentService.update(student);
          return Result.success();
      }
+
+     @DeleteMapping("/{ids}")
+     public Result delete(@PathVariable List<Integer> ids){
+         log.info("删除学生：{}",ids);
+         studentService.delete(ids);
+         return Result.success();
+     }
+
+     @PutMapping("/violation/{id}/{score}")
+     public Result violation(@PathVariable Integer id,@PathVariable Integer score){
+          log.info("违纪学生id:{},扣{}分",id,score);
+          studentService.violate(id,score);
+          return Result.success();
+     }
+
 }

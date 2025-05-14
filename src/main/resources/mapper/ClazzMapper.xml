@@ -26,6 +26,9 @@
     <select id="getClazzById" resultType="com.itheima.pojo.Clazz">
         select * from clazz where id = #{clazzId}
     </select>
+    <select id="getClazzStudent" resultType="java.util.Map">
+        select c.name clazz,count(s.id) num from clazz c left outer join student s on c.id = s.clazz_id group by c.name
+    </select>
     <insert id="insert">
         insert into clazz (name, room, begin_date, end_date, master_id, subject, create_time, update_time)
         value (#{name},#{room},#{beginDate},#{endDate},#{masterId},#{subject},#{createTime},#{updateTime})

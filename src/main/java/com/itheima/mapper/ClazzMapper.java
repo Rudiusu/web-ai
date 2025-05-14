@@ -2,9 +2,11 @@ package com.itheima.mapper;
 
 import com.itheima.pojo.Clazz;
 import com.itheima.pojo.ClazzQueryParam;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ClazzMapper {
@@ -31,4 +33,7 @@ public interface ClazzMapper {
     public void update(Clazz clazz);
 
     public void deleteById(Integer clazzId);
+
+    @MapKey("clazz")
+    public List<Map<String,Object>> getClazzStudent();
 }
