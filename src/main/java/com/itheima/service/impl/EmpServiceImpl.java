@@ -8,13 +8,16 @@ import com.itheima.mapper.EmpMapper;
 import com.itheima.pojo.*;
 import com.itheima.service.EmpLogService;
 import com.itheima.service.EmpService;
+import com.itheima.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EmpServiceImpl implements EmpService  {
@@ -126,8 +129,14 @@ public class EmpServiceImpl implements EmpService  {
     @Override
     public LoginInfo login(Emp empParams){
        Emp emp = empMapper.selectByUsernameAndPassword(empParams);
+
        if(emp!=null){
-           return new LoginInfo(emp.getId(),emp.getUsername(),emp.getName(),"");
+           Map<String, Object> dataMap = new HashMap<>();
+           dataMap.put("id",emp.getId());
+           dataMap.put("name",emp.getName());
+           dataMap.put("username",emp.getUsername());
+           String token = JwtUtils.generateJwt(dataMap);
+           return new LoginInfo(emp.getId(),emp.getUsername(),emp.getName(),token);
        }else{
            return null;
        }
