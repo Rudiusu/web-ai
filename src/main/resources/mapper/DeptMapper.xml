@@ -11,7 +11,7 @@
     </select>
     <select id="insert" >
         insert into dept (name,create_time,update_time)
-        values (#{deptName},now(),now())
+        values (#{name},now(),now())
     </select>
     <select id="update" >
         update dept set

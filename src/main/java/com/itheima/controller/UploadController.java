@@ -1,5 +1,6 @@
 package com.itheima.controller;
 
+import com.itheima.anno.Log;
 import com.itheima.pojo.Result;
 import com.itheima.utils.AliyunOSSOperator;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,7 @@ public class UploadController {
     public UploadController(AliyunOSSOperator ossOperator) {
         this.ossOperator = ossOperator;
     }
+    @Log
     @PostMapping("/upload")
     public Result updload( MultipartFile file) throws Exception{
         String fileName = file.getOriginalFilename();

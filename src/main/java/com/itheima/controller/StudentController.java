@@ -1,5 +1,6 @@
 package com.itheima.controller;
 
+import com.itheima.anno.Log;
 import com.itheima.pojo.Result;
 import com.itheima.pojo.Student;
 import com.itheima.pojo.StudentQueryParam;
@@ -24,6 +25,7 @@ public class StudentController {
          log.info("查询参数：{}",studentQueryParam);
          return Result.success(studentService.page(studentQueryParam)) ;
      }
+     @Log
      @PostMapping
      public Result insert(@RequestBody Student student){
          log.info("添加学生：{}",student);
@@ -35,20 +37,21 @@ public class StudentController {
          log.info("获取学生信息，id={}",id);
          return Result.success(studentService.getStudentById(id));
      }
+     @Log
      @PutMapping
      public Result update(@RequestBody Student student){
          log.info("修改学生：{}",student);
          studentService.update(student);
          return Result.success();
      }
-
+     @Log
      @DeleteMapping("/{ids}")
      public Result delete(@PathVariable List<Integer> ids){
          log.info("删除学生：{}",ids);
          studentService.delete(ids);
          return Result.success();
      }
-
+     @Log
      @PutMapping("/violation/{id}/{score}")
      public Result violation(@PathVariable Integer id,@PathVariable Integer score){
           log.info("违纪学生id:{},扣{}分",id,score);

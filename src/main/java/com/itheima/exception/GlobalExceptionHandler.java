@@ -1,6 +1,8 @@
 package com.itheima.exception;
 
 import com.itheima.pojo.Result;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,5 +30,11 @@ public class GlobalExceptionHandler {
         String errMsg = message.substring(i, message.indexOf("for key", i));
         String errKey = errMsg.replace("Duplicate entry ","");
         return Result.error("数据库异常："+errKey+"已存在");
+    }
+
+    @ExceptionHandler
+    public Result handlerDuplicateKeyException(ExpiredJwtException e) {
+        log.error("令牌过期:{}", e.getMessage());
+        return Result.error("登录身份过期，请重新登录");
     }
 }
